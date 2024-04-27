@@ -64,17 +64,17 @@ ORDER BY diff_cases DESC
 
 
 
-	2. Analysis of CovidDeaths dataset: 
-		2.1 By Country
-			a. Total cases vs. Population
-			b. Total cases vs. Total deaths
-			c. Countries with highest infection rate
-			d. Countries with highest death count
-		2.2 By Continent
-			a. Countries with highest infection rate
-			b. Countries with highest death count
-		2.3 Global
-			a. Grand total of cases vs. Grand total of deaths
+	2.	Analysis of CovidDeaths dataset: 
+		2.1 By Counry
+				a. Total cases vs. Population
+				b. Total cases vs. Total deaths
+				c. Countries with highest infection rate
+				d. Countries with highest death count
+		2.2	By Continent
+				a. Rank of continents by highest infection rate
+				b. Rank of continents with highest death count
+		2.3	Global
+				a. Grand total of cases vs. Grand total of deaths
 */
 
 
@@ -143,29 +143,51 @@ ORDER BY total_death_count DESC
 
 -- Continents with the highest infection rate relative to their population
 
-SELECT 
+WITH country_population AS 
+(
+SELECT
 	continent,
-	SUM(population) AS total_population, 
-	SUM(new_cases) AS total_sum_cases, 
-	SUM(new_cases)/SUM(population) *100 AS infection_rate
+	location,
+	population,
+	SUM(new_cases) AS sum_cases
 FROM PortfolioProject..CovidDeaths
 WHERE continent IS NOT NULL
+GROUP BY continent, location, population
+)
+	
+SELECT 
+	continent,
+	SUM(population) AS total_population,
+	SUM(sum_cases) AS total_sum_cases,
+	SUM(sum_cases)/SUM(population) *100 AS infection_rate
+FROM country_population
 GROUP BY continent
 ORDER BY infection_rate DESC
 
 
 -- Continents with the highest death count 
--- Also showing respective death percentage relative to their population
-	
+-- Also showing respective death percentage relative to their total_cases
+
+WITH country_population AS 
+(
+SELECT
+	continent,
+	location,
+	population,
+	SUM(CAST(new_deaths AS int)) AS sum_deaths
+FROM PortfolioProject..CovidDeaths
+WHERE continent IS NOT NULL
+GROUP BY continent, location, population
+)	
+
 SELECT 
 	continent,
 	SUM(population) AS total_population,
-	SUM(CAST(new_deaths AS int)) AS total_death_count,
-	SUM(CAST(new_deaths AS int))/SUM(population) * 100 AS death_percentage
-FROM PortfolioProject..CovidDeaths
-WHERE continent IS NOT NULL
+	SUM(sum_deaths) AS total_sum_deaths,
+	SUM(sum_deaths)/SUM(population) *100 AS death_percentage
+FROM country_population
 GROUP BY continent
-ORDER BY total_death_count DESC
+ORDER BY total_sum_deaths DESC
 
 
 -- 2.3	ANALYSIS: GLOBAL
@@ -299,6 +321,9 @@ WHERE dea.continent IS NOT NULL
 
 SELECT *
 FROM PercentPopulationVaccinated
+
+
+
 
 
 
