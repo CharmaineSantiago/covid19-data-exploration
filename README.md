@@ -37,7 +37,7 @@ The analysis explores the following areas:
 
 
 ## Visualization
-Below is the screenshot of the dashboard created for this project which can be accessed and downloaded downloaded [here](https://public.tableau.com/app/profile/charmaine.santiago/viz/COVID-19CasesDeathTracker/ByContinentDashboard).
+Below is the screenshot of the dashboard created for this project which can be accessed and downloaded [here](https://public.tableau.com/app/profile/charmaine.santiago/viz/COVID-19CasesDeathTracker/ByContinentDashboard).
 
 ![image](https://github.com/CharmaineSantiago/covid19-data-exploration/assets/158445656/e1ef14cd-acf7-4b82-b15b-36b6e226bc85)
 
