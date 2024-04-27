@@ -64,17 +64,17 @@ ORDER BY diff_cases DESC
 
 
 
-	2.	Analysis of CovidDeaths dataset: 
-		2.1 By Counry
-				a. Total cases vs. Population
-				b. Total cases vs. Total deaths
-				c. Countries with highest infection rate
-				d. Countries with highest death count
-		2.2	By Continent
-				a. Countries with highest infection rate
-				b. Countries with highest death count
-		2.3	Global
-				a. Grand total of cases vs. Grand total of deaths
+	2. Analysis of CovidDeaths dataset: 
+		2.1 By Country
+			a. Total cases vs. Population
+			b. Total cases vs. Total deaths
+			c. Countries with highest infection rate
+			d. Countries with highest death count
+		2.2 By Continent
+			a. Countries with highest infection rate
+			b. Countries with highest death count
+		2.3 Global
+			a. Grand total of cases vs. Grand total of deaths
 */
 
 
